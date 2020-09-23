@@ -31,7 +31,7 @@ class ProductController {
   }
 
   async update(req, res) {
-    
+
     const product = await Product.findByPk(req.params.id)
 
     const { id, name, descricao, logo, manual } = await product.update(req.body)
