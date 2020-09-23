@@ -1,6 +1,5 @@
 import * as Yup from 'yup';
 import Product from '../models/Product';
-import User from '../models/User';
 
 class ProductController {
   async index(req, res) {
@@ -9,7 +8,6 @@ class ProductController {
       attributes: ['id', 'name', 'descricao', 'logo', 'manual'],
       order: ['id']
     })
-
     return res.json(product)
   }
 
@@ -42,13 +40,14 @@ class ProductController {
 
   async delete(req, res) {
     const id = req.body.id
+
     await Product.destroy({
       where: {
         id: id
       }
     })
 
-    return res.json();
+    return res.json({ message: 'Produto excluído com sucesso!!' });
   }
 
 }
