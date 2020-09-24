@@ -6,7 +6,7 @@ class ProductController {
   //listando todos os produtos ou apenas passando o ID
   async index(req, res) {
     try {
-      const id = req.params.id;
+      const id = req.body.id;
       if (id == null) {
         const product = await Product.findAll({
           attributes: ['id', 'name', 'descricao', 'logo', 'manual'],
