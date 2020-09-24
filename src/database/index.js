@@ -22,7 +22,8 @@ class Database {
       'mongodb://localhost:27017/desafio',
       {
         useNewUrlParser: true,
-        useFindAndModify: true
+        useFindAndModify: true,
+        useUnifiedTopology: true
       }
     )
   }
