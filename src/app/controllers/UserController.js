@@ -27,7 +27,7 @@ class UserController {
   async update(req, res) {
 
     const user = await User.findByPk(req.userId);
-    const { id, name, email } = await user.update(req.body)
+    const { id, name, email, } = await user.update(req.body)
 
     return res.json({ id, name, email });
   }
