@@ -20,12 +20,12 @@ class ProductController {
           order: ['id']
         })
       if (product == null) {
-        return res.status(404).json({ error: "Id não encontrado" })
+        return res.status(401).json({ error: "Id não encontrado" })
       }
       return res.json(product)
 
     } catch (error) {
-      return res.status(404).json({ error: "Id não encontrado" })
+      return res.status(401).json({ error: "Id não encontrado" })
     }
   }
   //criando o produto
@@ -44,7 +44,7 @@ class ProductController {
 
       return res.json(product);
     } catch (err) {
-      return res.status(404).json({ error: "Falha no cadastro" })
+      return res.status(401).json({ error: "Falha no cadastro" })
     }
   }
   // atualizano o produto
@@ -55,22 +55,17 @@ class ProductController {
 
       return res.json(product)
     } catch (err) {
-      return res.status(404).json({ error: "Falha na atualização" })
+      return res.status(401).json({ error: "Falha na atualização" })
     }
 
   }
   // deletando o produto
   async delete(req, res) {
-
-
     const id = req.params.id
 
     await Product.destroy({ where: { id: id } })
 
     return res.json({ message: 'Produto excluído com sucesso!!' });
-
-
-
   }
 
 }
