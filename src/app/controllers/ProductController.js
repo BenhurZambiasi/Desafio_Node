@@ -61,15 +61,15 @@ class ProductController {
   }
   // deletando o produto
   async delete(req, res) {
-    try {
-      const id = req.params.id
 
-      await Product.destroy({ where: { id: id } })
 
-      return res.json({ message: 'Produto excluído com sucesso!!' });
-    } catch (error) {
-      return res.status(404).json({ error: "Falha ao deletar o produto" })
-    }
+    const id = req.params.id
+
+    await Product.destroy({ where: { id: id } })
+
+    return res.json({ message: 'Produto excluído com sucesso!!' });
+
+
 
   }
 

@@ -23,7 +23,7 @@ class UserController {
 
     return res.json({ id, name, email });
   }
-
+  //alterando o cadastro
   async update(req, res) {
 
     const user = await User.findByPk(req.userId);
