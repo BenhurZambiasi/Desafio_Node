@@ -1,0 +1,527 @@
+{
+  "swagger": "2.0",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "host": "locahost:2222",
+  "basePath": "/desafio-api-v1",
+  "info": {
+    "version": "1.0.0",
+    "title": "Desafio",
+    "description": "criar e manipula cadastros de usuários e produtos.",
+    "termsOfService": "http://locahost:2222/desafio-api-v1/termo-uso",
+    "contact": {
+      "name": "Suporte",
+      "url": "http://locahost:2222/desafio-api-v1/suporte",
+      "email": "benhur_zambiasi@hotmail.com"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Cadastra cliente",
+        "description": "Cadastra um novo cliente",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "UserController.store",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Benhur"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "benhur@hotmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "123465"
+                }
+              },
+              "required": [
+                "name",
+                "email",
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "cadastro efetuado com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Benhur"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "benhur@hotmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "123465"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "requisição inválida"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Altera as informações do usuário",
+        "description": "Faz a alteranção no cadastro do usuário, porém é necessário estar logado",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "UserController.update",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Benhur"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "benhur@hotmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "123465"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Benhur"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "benhur@hotmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "123465"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "requisição inválida"
+          }
+        }
+      }
+    },
+    "/session": {
+      "post": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Faz o login do usuário",
+        "description": "Faz o login do usuário e gera um token de autenticação",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "SessionController.store",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "benhur@hotmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "123465"
+                }
+              },
+              "required": [
+                "email",
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "1"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Benhur"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "benhur@hotmail.com"
+                },
+                "token": {
+                  "type": "string",
+                  "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNjAwOTcxNDc4LCJleHAiOjE2MDE1NzYyNzh9.UmkVxilpYOFINphrndfuaMivVnEKil1OUa3UGRNO0Ag"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "requisição inválida"
+          }
+        }
+      }
+    },
+    "/files": {
+      "post": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Faz o upload dos arquivos",
+        "description": "Faz upload dos arquivos e altera o nome de origem para um nome único",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "FileController.store",
+        "parameters": [
+          {
+            "in": "header",
+            "type": "boolean",
+            "name": ""
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "1"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "img_tesoura.jpg"
+                },
+                "path": {
+                  "type": "string",
+                  "example": "c6b0080241d5a5fa0274847c1c738b71.jpg"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "requisição inválida"
+          }
+        }
+      }
+    },
+    "/products": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Faz o cadastro do produto",
+        "description": "Faz o cadastro do produto, o logo e o manual é referenciado pelo path gerado em File",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "ProductController.store",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "tesoura"
+                },
+                "descricao": {
+                  "type": "string",
+                  "example": "tesoura sem ponta"
+                },
+                "logo": {
+                  "type": "string",
+                  "example": "c6b0080241d5a5fa0274847c1c738b71.jpg"
+                },
+                "manual": {
+                  "type": "string",
+                  "example": "b5b8be673eb68193a7f5b1628be6ad03.pdf"
+                }
+              },
+              "required": [
+                "name",
+                "descricao",
+                "logo"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "name": {
+                  "type": "string",
+                  "example": "tesoura"
+                },
+                "descricao": {
+                  "type": "string",
+                  "example": "tesoura sem ponta"
+                },
+                "logo": {
+                  "type": "string",
+                  "example": "c6b0080241d5a5fa0274847c1c738b71.jpg"
+                },
+                "manual": {
+                  "type": "string",
+                  "example": "b5b8be673eb68193a7f5b1628be6ad03.pdf"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "requisição inválida"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Lista os produtos",
+        "description": "Faz a listagem de todos os produtos ou passando o id para listar somente o produto desejado",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "ProductController.index",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "1"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "name": {
+                  "type": "string",
+                  "example": "tesoura"
+                },
+                "descricao": {
+                  "type": "string",
+                  "example": "tesoura sem ponta"
+                },
+                "logo": {
+                  "type": "string",
+                  "example": "c6b0080241d5a5fa0274847c1c738b71.jpg"
+                },
+                "manual": {
+                  "type": "string",
+                  "example": "b5b8be673eb68193a7f5b1628be6ad03.pdf"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "requisição inválida"
+          }
+        }
+      }
+    },
+    "/products/id": {
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Altera o produto",
+        "description": "Faz alterações no cadastro produto",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "ProductController.update",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "tesoura"
+                },
+                "descricao": {
+                  "type": "string",
+                  "example": "tesoura sem ponta"
+                },
+                "logo": {
+                  "type": "string",
+                  "example": "c6b0080241d5a5fa0274847c1c738b71.jpg"
+                },
+                "manual": {
+                  "type": "string",
+                  "example": "b5b8be673eb68193a7f5b1628be6ad03.pdf"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "name": {
+                  "type": "string",
+                  "example": "tesoura"
+                },
+                "descricao": {
+                  "type": "string",
+                  "example": "tesoura sem ponta"
+                },
+                "logo": {
+                  "type": "string",
+                  "example": "c6b0080241d5a5fa0274847c1c738b71.jpg"
+                },
+                "manual": {
+                  "type": "string",
+                  "example": "b5b8be673eb68193a7f5b1628be6ad03.pdf"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "requisição inválida"
+          }
+        }
+      }
+    },
+    "/products/": {
+      "delete": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Exclui o produto",
+        "description": "Faz a exlcusão de um produto passando o id ou uma lista de Ids",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "ProductController.delete",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "1"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Produto excluído com sucesso"
+          },
+          "400": {
+            "description": "requisição inválida"
+          }
+        }
+      }
+    }
+  }
+}
