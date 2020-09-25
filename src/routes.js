@@ -20,6 +20,7 @@ routes.post('/users', UserController.store);
 
 
 routes.post('/sessions', SessionController.store);
+routes.use(authMiddleware);
 
 routes.post('/products', ProductController.store)
 routes.put('/products/:id', ProductController.update)
@@ -27,7 +28,7 @@ routes.get('/products/', ProductController.index)
 routes.get('/products/:id', ProductController.index)
 routes.delete('/products/', ProductController.delete)
 
-routes.put('/users/', authMiddleware, UserController.update);
+routes.put('/users/', UserController.update);
 
 routes.post('/files', upload.single('file'), FileController.store)
 
