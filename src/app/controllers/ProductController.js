@@ -51,7 +51,7 @@ class ProductController {
   async update(req, res) {
     try {
       const product = await Product.findByPk(req.params.id)
-      const { id, name, descricao, logo, manual } = await product.update(req.body)
+      await product.update(req.body)
 
       return res.json(product)
     } catch (err) {
@@ -62,15 +62,15 @@ class ProductController {
   // deletando o produto
   async delete(req, res) {
     try {
-      const productExist = await Product.findOne({ where: { id: req.body.id } })
+      const { id } = req.body
+      const productExist = await Product.findOne({ where: { id } })
 
       if (productExist) {
-        const id = req.body.id
         if (id == null) {
-          await Product.destroy({ where: { id: req.body.id } })
+          await Product.destroy({ where: { id } })
           return res.json({ message: 'Produto excluído com sucesso!!' });
         }
-        await Product.destroy({ where: { id: id } })
+        await Product.destroy({ where: { id } })
         return res.json({ message: 'Produto excluído com sucesso!!' })
       }
       return res.status(400).json({ error: "Id não encontrado" })
