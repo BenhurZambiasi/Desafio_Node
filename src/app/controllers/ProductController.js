@@ -6,7 +6,7 @@ class ProductController {
   //listando todos os produtos ou apenas passando o ID
   async index(req, res) {
     try {
-      const id = req.body.id;
+      const id = req.params.id;
       if (id == null) {
         const product = await Product.findAll({
           attributes: ['id', 'name', 'descricao', 'logo', 'manual'],
@@ -20,12 +20,12 @@ class ProductController {
           order: ['id']
         })
       if (product == null) {
-        return res.status(401).json({ error: "Id não encontrado" })
+        return res.status(400).json({ error: "Id não encontrado" })
       }
       return res.json(product)
 
     } catch (error) {
-      return res.status(401).json({ error: "Id não encontrado" })
+      return res.status(401).json({ error: "Requizição não encontrada" })
     }
   }
   //criando o produto
@@ -55,21 +55,30 @@ class ProductController {
 
       return res.json(product)
     } catch (err) {
-      return res.status(401).json({ error: "Falha na atualização" })
+      return res.status(401).json({ error: "ID não encontrado" })
     }
 
   }
   // deletando o produto
   async delete(req, res) {
     try {
-      await Product.destroy({ where: { id: req.body.id } })
-      return res.json({ message: 'Produto excluído com sucesso!!' });
+      const productExist = await Product.findOne({ where: { id: req.body.id } })
+
+      if (productExist) {
+        const id = req.body.id
+        if (id == null) {
+          await Product.destroy({ where: { id: req.body.id } })
+          return res.json({ message: 'Produto excluído com sucesso!!' });
+        }
+        await Product.destroy({ where: { id: id } })
+        return res.json({ message: 'Produto excluído com sucesso!!' })
+      }
+      return res.status(400).json({ error: "Id não encontrado" })
     } catch (error) {
-      return res.status(401).json({ error: "falha na exclusão" })
+      return res.status(401).json({ error: "Falha na exclusão" })
     }
 
   }
-
 }
 
 export default new ProductController();

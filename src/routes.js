@@ -24,6 +24,7 @@ routes.post('/sessions', SessionController.store);
 routes.post('/products', ProductController.store)
 routes.put('/products/:id', ProductController.update)
 routes.get('/products/', ProductController.index)
+routes.get('/products/:id', ProductController.index)
 routes.delete('/products/', ProductController.delete)
 
 routes.put('/users/', authMiddleware, UserController.update);
