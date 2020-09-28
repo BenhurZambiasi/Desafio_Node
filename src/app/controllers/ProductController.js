@@ -40,14 +40,18 @@ class ProductController {
       if (!(await schema.isValid(req.body))) {
         return res.json({ erro: 'Erro de validação' })
       }
+      const productExist = await Product.findOne({ where: { name: req.body.name } });
+      if (productExist) {
+        return res.status(400).json({ error: 'Produto já cadastrado' })
+      }
       const product = await Product.create(req.body);
 
       return res.json(product);
     } catch (err) {
-      return res.status(401).json({ error: "Falha no cadastro" })
+      return res.status(401).json({ error: "Produto já castrado" })
     }
   }
-  // atualizano o produto
+  // Atualizano o produto
   async update(req, res) {
     try {
       const product = await Product.findByPk(req.params.id)

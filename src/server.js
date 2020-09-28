@@ -1,4 +1,4 @@
 import app from './app';
 
 
-app.listen(2222)
+app.listen(2224)
