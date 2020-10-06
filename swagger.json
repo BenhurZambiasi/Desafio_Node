@@ -101,6 +101,11 @@
         "operationId": "UserController.update",
         "parameters": [
           {
+            "in": "header",
+            "type": "string",
+            "name": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZ"
+          },
+          {
             "in": "body",
             "name": "",
             "schema": {
@@ -206,7 +211,7 @@
                 },
                 "token": {
                   "type": "string",
-                  "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNjAwOTcxNDc4LCJleHAiOjE2MDE1NzYyNzh9.UmkVxilpYOFINphrndfuaMivVnEKil1OUa3UGRNO0Ag"
+                  "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZ"
                 }
               }
             }
@@ -225,7 +230,7 @@
         "summary": "Faz o upload dos arquivos",
         "description": "Faz upload dos arquivos e altera o nome de origem para um nome único",
         "consumes": [
-          "application/json"
+          "multipart/form-data"
         ],
         "produces": [
           "application/json"
@@ -234,8 +239,13 @@
         "parameters": [
           {
             "in": "header",
-            "type": "boolean",
-            "name": ""
+            "name": "File",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "type": "file",
+            "name": "file"
           }
         ],
         "responses": {
