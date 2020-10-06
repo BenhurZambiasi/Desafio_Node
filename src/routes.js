@@ -20,7 +20,7 @@ routes.post('/users', UserController.store);
 
 
 routes.post('/sessions', SessionController.store);
-// routes.use(authMiddleware);
+routes.use(authMiddleware);
 
 routes.post('/products', ProductController.store)
 routes.put('/products/:id', ProductController.update)
