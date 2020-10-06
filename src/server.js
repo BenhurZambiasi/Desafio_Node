@@ -1,4 +1,4 @@
 import app from './app';
 
 
-app.listen(process.env.PORT || 2224)
+app.listen(process.env.PORT || 2222)
