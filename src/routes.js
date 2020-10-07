@@ -8,7 +8,7 @@ import SessionController from './app/controllers/SessionController';
 import FileController from './app/controllers/FileController';
 import ProductController from './app/controllers/ProductController';
 
-import authMiddleware from './app/middlewares/auth';
+// import authMiddleware from './app/middlewares/auth';
 
 
 
@@ -20,7 +20,7 @@ routes.post('/users', UserController.store);
 
 
 routes.post('/sessions', SessionController.store);
-routes.use(authMiddleware);
+// routes.use(authMiddleware);
 
 routes.put('/users/', UserController.update);
 
