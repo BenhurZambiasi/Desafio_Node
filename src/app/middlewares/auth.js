@@ -7,7 +7,7 @@ import authConfig from '../../config/auth';
 export default async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
-  if (!authHeader) {
+  if (authHeader) {
     return res.status(401).json({ error: 'Token' })
   }
   const [, token] = authHeader.split(' ');
