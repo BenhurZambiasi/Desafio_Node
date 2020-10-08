@@ -7,7 +7,7 @@ import './database';
 class App {
   constructor() {
     this.server = express();
-
+    this.server.use(Cors())
     this.middlewares();
     this.routes();
   }
@@ -18,7 +18,7 @@ class App {
   }
 
   routes() {
-    this.server.use(Cors())
+
     this.server.use('/swagger', swaggerUi.serve, swaggerUi.setup(openApiDocumentation));
     this.server.use(routes);
   }
