@@ -154,7 +154,7 @@
         }
       }
     },
-    "/session": {
+    "/sessions": {
       "post": {
         "tags": [
           "Sessions"
