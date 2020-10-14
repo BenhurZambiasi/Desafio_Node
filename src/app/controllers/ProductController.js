@@ -2,7 +2,6 @@ import * as Yup from 'yup';
 import Product from '../models/Product';
 
 class ProductController {
-
   //listando todos os produtos ou apenas passando o ID
   async index(req, res) {
     try {
@@ -22,7 +21,7 @@ class ProductController {
       if (product == null) {
         return res.status(400).json({ error: "Id não encontrado" })
       }
-      return res.json(product)
+      return res.json([product])
 
     } catch (error) {
       return res.status(401).json({ error: "Requizição não encontrada" })
