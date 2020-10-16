@@ -33,6 +33,8 @@ class ProductController {
       const schema = Yup.object().shape({
         name: Yup.string().required(),
         descricao: Yup.string().required(),
+        logo: Yup.string().required,
+        manual: Yup.string()
       })
       // if (!(await schema.isValid(req.body))) {
       //   return res.json({ erro: 'Erro de validação' })
