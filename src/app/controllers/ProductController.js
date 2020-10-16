@@ -67,7 +67,7 @@ class ProductController {
   // deletando o produto
   async delete(req, res) {
     try {
-      const { id } = req.body
+      const id = req.params.id
       const productExist = await Product.findOne({ where: { id } })
 
       if (productExist) {
